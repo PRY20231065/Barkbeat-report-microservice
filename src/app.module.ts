@@ -1,10 +1,17 @@
+import { HistoricEcgImplService } from './modules/historic-ecg/application/service/historicEcgImpl.service';
+import { HistoricEcgController } from './modules/historic-ecg/infrastructure/controller/historicEcg.controller';
+import { HistoricEcgModule } from './modules/historic-ecg/historicECG.module';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from './common/database/database.module';
+
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    DatabaseModule,
+    HistoricEcgModule],
+  controllers: [],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule { }
