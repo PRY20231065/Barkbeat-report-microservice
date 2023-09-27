@@ -19,4 +19,16 @@ export class HistoricEcgImplRepository implements HistoricEcgRepository {
         return historicCreated;
     }
 
+    async getRegistriesByTimes(dogId: string, timestampStart: number, timestampEnd: number): Promise<any[]>{
+        const query = this.historicEcgModel.query('dog_id').eq(dogId);
+
+        query.where('created_time').between(timestampStart, timestampEnd);
+
+        query.attributes(['ecg']);
+
+        const result = await query.exec();
+
+        return result.map((obj) => obj.ecg).flat();;
+    }
+
 }

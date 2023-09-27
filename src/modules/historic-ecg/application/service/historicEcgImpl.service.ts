@@ -49,4 +49,14 @@ export class HistoricEcgImplService implements HistoricEcgService {
             throw ErrorManager.createSignatureError(error.message)
         }
     }
+
+    async getEcgRegistryByTimes(dogId: string, timestampStart: number, timestampEnd: number): Promise<any[]>{
+        try{
+            const ecgs = await this.historicRepository.getRegistriesByTimes(dogId, timestampStart, timestampEnd);
+            return ecgs;
+        }catch(error){
+            console.log(error);
+            throw ErrorManager.createSignatureError(error.message)
+        }
+    }
 }
