@@ -6,19 +6,19 @@ pipeline {
         DYNAMO_SECRET_ACCESS_KEY = credentials('dynamo-secret-key')
         DYNAMO_REGION = 'us-east-1'
         NAME = 'report-microservice'
-        PORT = '9215'
+        PORT = '19215'
         PAYLOAD_AGW_KEY = 'key-rs256-2048-pry20231065-dev'
         PAYLOAD_EXP_TIME = '60'
     }
 
     stages {
-        /*stage('Clean') {
+        stage('Clean') {
             agent any
             steps {
                 sh "docker stop ${NAME}-container"
                 sh "docker rm ${NAME}-container"
             }
-        }*/
+        }
 
         stage('Checkout') {
             agent any
