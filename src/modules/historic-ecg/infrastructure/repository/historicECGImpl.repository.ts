@@ -14,6 +14,7 @@ export class HistoricEcgImplRepository implements HistoricEcgRepository {
     
     async create(historic: HistoricEcg): Promise<HistoricEcg> {
         historic.id = uuid.v4();
+        
         const historicCreated = await this.historicEcgModel.create(historic);
         return historicCreated;
     }

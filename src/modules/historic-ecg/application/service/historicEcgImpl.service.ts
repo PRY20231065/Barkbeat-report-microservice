@@ -23,6 +23,7 @@ export class HistoricEcgImplService implements HistoricEcgService {
 
             
             const historicModel = mapper.map(historicReq, HistoricEcgRequestDTO, HistoricEcg);
+            historicModel.ecg = historicReq.ecg;
 
             const responseHistoric = await this.historicRepository.create(historicModel);
 
@@ -34,6 +35,7 @@ export class HistoricEcgImplService implements HistoricEcgService {
             }
 
             const mapHistoric = mapper.map(responseHistoric, HistoricEcg, HistoricEcgResponseDTO);
+            mapHistoric.ecg = responseHistoric.ecg;
 
             return {
                 success: true,

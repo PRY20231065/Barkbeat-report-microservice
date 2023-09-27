@@ -12,7 +12,7 @@ export class HistoricEcgRequestDTO {
 
     @ApiProperty()
     @AutoMap()
-    ecg: Array<ECG>;
+    ecg: [];
 
     @ApiProperty()
     @AutoMap()

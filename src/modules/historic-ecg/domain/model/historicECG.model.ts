@@ -10,7 +10,7 @@ export class HistoricEcg extends HistoricEcgKey {
     id: string
 
     @AutoMap()
-    ecg: Array<ECG>
+    ecg: []
 
     @AutoMap()
     created_time: number;
