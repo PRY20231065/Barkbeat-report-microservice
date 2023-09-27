@@ -4,10 +4,11 @@ https://docs.nestjs.com/controllers#controllers
 
 import { Body, Controller, Post } from '@nestjs/common';
 import { HistoricEcgImplService } from '../../application/service/historicEcgImpl.service';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { HistoricEcgRequestDTO } from '../../application/dto/HistoricEcg.request.dto';
 
-@Controller()
+@ApiTags('ecg-data')
+@Controller('ecg-data')
 export class HistoricEcgController {
     constructor(private readonly historicService: HistoricEcgImplService){}
 
