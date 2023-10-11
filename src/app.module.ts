@@ -4,13 +4,16 @@ import { HistoricEcgModule } from './modules/historic-ecg/historicECG.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './common/database/database.module';
+import { HistoricPulseModule } from './modules/historic-pulse/historicPulse.module';
 
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
-    HistoricEcgModule],
+    HistoricEcgModule,
+    HistoricPulseModule
+  ],
   controllers: [],
   providers: [],
 })
