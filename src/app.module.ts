@@ -1,3 +1,5 @@
+import { ReportModule } from './modules/report/report.module';
+import { ReportController } from './modules/report/report.controller';
 import { HistoricEcgImplService } from './modules/historic-ecg/application/service/historicEcgImpl.service';
 import { HistoricEcgController } from './modules/historic-ecg/infrastructure/controller/historicEcg.controller';
 import { HistoricEcgModule } from './modules/historic-ecg/historicECG.module';
@@ -9,6 +11,7 @@ import { HistoricPulseModule } from './modules/historic-pulse/historicPulse.modu
 
 @Module({
   imports: [
+    ReportModule,
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,
     HistoricEcgModule,
