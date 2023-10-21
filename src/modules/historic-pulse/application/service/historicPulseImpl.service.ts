@@ -55,4 +55,14 @@ export class HistoricPulseImplService implements HistoricPulseService {
             throw ErrorManager.createSignatureError(error.message)
         }
     }
+
+    async getRegistryLast5minutes(dogId: string): Promise<any[]>{
+        try{
+            const pulses = await this.historicRepository.getRegistryLast5minutesPulse(dogId);
+            return pulses;
+        }catch(error){
+            console.log(error);
+            throw ErrorManager.createSignatureError(error.message)
+        }
+    }
 }

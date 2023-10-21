@@ -28,4 +28,10 @@ export class HistoricEcgController {
         return await this.historicService.getEcgRegistryByTimes(dog_id, timestampStart, timestampEnd);
     }
 
+
+    @Get(':dog_id/last-5-minutes-record')
+    async getRegistryLast5minutes(@Param('dog_id') dogId: string){
+        return await this.historicService.getRegistryLast5minutes(dogId)
+    }
+
 }
