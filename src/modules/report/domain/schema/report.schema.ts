@@ -34,9 +34,16 @@ export const ReportSchema = new Schema({
         type: Array,
         schema: [String],
     },
-    symptoms: {
+    created_date:{
+        type: Number,
+        index: {
+            name: 'created-date-index',
+            type: IndexType.global
+        }
+    }
+    /*symptoms: {
         type: Array,
         schema: [String],
-    },
+    },*/
 });
 

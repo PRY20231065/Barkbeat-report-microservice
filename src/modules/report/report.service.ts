@@ -15,6 +15,7 @@ export class ReportService {
     async registerReport(reportRequest: ReportRequestDTO){
         try{
             const reportModel = mapper.map(reportRequest, ReportRequestDTO, Report);
+            reportModel.indications = reportRequest.indications;
 
             const responseReport = await this.reportRepository.createReport(reportModel);
 

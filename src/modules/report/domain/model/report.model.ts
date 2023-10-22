@@ -23,5 +23,6 @@ export class Report extends ReportKey {
     indications: [];
 
     @AutoMap()
-    symptoms: [];
+    created_date: number;
+    //symptoms: [];
 }

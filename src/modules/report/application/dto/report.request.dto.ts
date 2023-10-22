@@ -28,5 +28,6 @@ export class ReportRequestDTO {
 
     @ApiProperty()
     @AutoMap()
-    symptons: []
+    created_date: number;
+    //symptons: []
 }
