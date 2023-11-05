@@ -6,6 +6,8 @@ import { HistoricPulse } from 'src/modules/historic-pulse/domain/model/historicP
 import { HistoricPulseResponseDTO } from 'src/modules/historic-pulse/application/dto/HistoricPulse.response.dto';
 import { Report } from 'src/modules/report/domain/model/report.model';
 import { ReportResponseDTO } from 'src/modules/report/application/dto/report.response.dto';
+import { HistoricTemperature } from 'src/modules/historic-temp/domain/model/historicTemp.model';
+import { HistoricTempResponseDTO } from 'src/modules/historic-temp/application/dto/HistoricTemp.response.dto';
 
 
 
@@ -13,5 +15,6 @@ import { ReportResponseDTO } from 'src/modules/report/application/dto/report.res
 export const modelToResource = () =>{
     createMap(mapper, HistoricEcg, HistoricEcgResponseDTO);
     createMap(mapper, HistoricPulse, HistoricPulseResponseDTO);
+    createMap(mapper, HistoricTemperature, HistoricTempResponseDTO);
     createMap(mapper, Report, ReportResponseDTO)
 }

@@ -6,6 +6,8 @@ import { HistoricPulseRequestDTO } from 'src/modules/historic-pulse/application/
 import { HistoricPulse } from 'src/modules/historic-pulse/domain/model/historicPulse.model';
 import { ReportRequestDTO } from 'src/modules/report/application/dto/report.request.dto';
 import { Report } from 'src/modules/report/domain/model/report.model';
+import { HistoricTempRequestDTO } from 'src/modules/historic-temp/application/dto/HistoricTemp.request.dto';
+import { HistoricTemperature } from 'src/modules/historic-temp/domain/model/historicTemp.model';
 
 
 
@@ -16,4 +18,5 @@ export const resourceToModel = () => {
     createMap(mapper, HistoricEcgRequestDTO, HistoricEcg);
     createMap(mapper, HistoricPulseRequestDTO, HistoricPulse);
     createMap(mapper, ReportRequestDTO, Report);
+    createMap(mapper, HistoricTempRequestDTO, HistoricTemperature);
 }
