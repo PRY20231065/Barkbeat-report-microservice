@@ -14,6 +14,7 @@ import { ErrorManager } from 'src/utils/errors/error.manager';
 
 @Injectable()
 export class HistoricPulseImplService implements HistoricPulseService {
+    
     constructor(
         private readonly historicRepository: HistoricPulseImplRepository
     ){}
@@ -65,4 +66,32 @@ export class HistoricPulseImplService implements HistoricPulseService {
             throw ErrorManager.createSignatureError(error.message)
         }
     }
+
+    async getLastRegistry(dogId: string): Promise<IGenericResponse<HistoricPulseResponseDTO>> {
+        try{
+            const pulse = await this.historicRepository.getLastRegistryPulse(dogId);
+            if(pulse){
+
+                const mapHistoric = mapper.map(pulse, HistoricPulse, HistoricPulseResponseDTO);
+
+                return {
+                    success: true,
+                    code: HttpStatus.OK,
+                    data: mapHistoric,
+                    messages: ['Last registry found']
+                }
+            }else{
+                throw new ErrorManager({
+                    type: 'BAD_REQUEST',
+                    message: `Last registry not was found`
+                })
+            }
+
+        }catch(error){
+            console.log(error);
+            throw ErrorManager.createSignatureError(error.message)
+        }
+    }
+
+
 }

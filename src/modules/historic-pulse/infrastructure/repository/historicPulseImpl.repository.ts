@@ -7,20 +7,21 @@ import { SortOrder } from "dynamoose/dist/General";
 
 @Injectable()
 export class HistoricPulseImplRepository implements HistoricPulseRepository {
+
     constructor(
         @InjectModel('historic_pulse')
         private readonly historicPulseModel: Model<HistoricPulse, HistoricPulseKey>
     ) { }
-    
-    
+
+
     async create(historic: HistoricPulse): Promise<HistoricPulse> {
         historic.id = uuid.v4();
-        
+
         const historicCreated = await this.historicPulseModel.create(historic);
         return historicCreated;
     }
 
-    async getRegistriesByTimes(dogId: string, timestampStart: number, timestampEnd: number): Promise<any[]>{
+    async getRegistriesByTimes(dogId: string, timestampStart: number, timestampEnd: number): Promise<any[]> {
         const query = this.historicPulseModel.query('dog_id').eq(dogId);
 
         query.where('created_time').between(timestampStart, timestampEnd);
@@ -58,6 +59,21 @@ export class HistoricPulseImplRepository implements HistoricPulseRepository {
             // En caso de que no se encuentre ningún registro, retorna un arreglo vacío o maneja la lógica según tus necesidades.
             return [];
         }
+    }
+
+    async getLastRegistryPulse(dogId: string): Promise<HistoricPulse> {
+        const result = await this.historicPulseModel.query('dog_id')
+            .eq(dogId)
+            .sort(SortOrder.descending)
+            .limit(1)
+            .exec();
+
+        if (result.length > 0) {
+            return result[0];
+        }else{
+            return null;
+        }
+
     }
 
 }

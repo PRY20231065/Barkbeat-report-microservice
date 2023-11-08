@@ -61,4 +61,30 @@ export class HistoricTemperatureImplService {
             throw ErrorManager.createSignatureError(error.message)
         }
     }
+
+    async getLastRegistry(dogId: string): Promise<IGenericResponse<HistoricTempResponseDTO>> {
+        try{
+            const temp = await this.historicRepository.getLastRegistryTemp(dogId);
+            if(temp){
+
+                const mapHistoric = mapper.map(temp, HistoricTemperature, HistoricTempResponseDTO);
+
+                return {
+                    success: true,
+                    code: HttpStatus.OK,
+                    data: mapHistoric,
+                    messages: ['Last registry found']
+                }
+            }else{
+                throw new ErrorManager({
+                    type: 'BAD_REQUEST',
+                    message: `Last registry not was found`
+                })
+            }
+
+        }catch(error){
+            console.log(error);
+            throw ErrorManager.createSignatureError(error.message)
+        }
+    }
 }

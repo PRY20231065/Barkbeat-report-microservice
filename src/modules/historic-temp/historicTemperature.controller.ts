@@ -32,4 +32,9 @@ export class HistoricTemperatureController {
     async getRegistryLast5minutes(@Param('dog_id') dogId: string){
         return await this.historicService.getRegistryLast5minutes(dogId)
     }
+
+    @Get(':dog_id/last-record')
+    async getLastRegistry(@Param('dog_id') dogId: string){
+        return await this.historicService.getLastRegistry(dogId)
+    }
 }

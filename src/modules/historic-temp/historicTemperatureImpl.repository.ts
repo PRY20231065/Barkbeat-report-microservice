@@ -57,4 +57,19 @@ export class HistoricTemperatureImplRepository {
         }
     }
 
+    async getLastRegistryTemp(dogId: string): Promise<HistoricTemperature> {
+        const result = await this.historicTemperatureModel.query('dog_id')
+            .eq(dogId)
+            .sort(SortOrder.descending)
+            .limit(1)
+            .exec();
+
+        if (result.length > 0) {
+            return result[0];
+        }else{
+            return null;
+        }
+
+    }
+
 }
