@@ -1,0 +1,13 @@
+version: '3'
+services:
+  report-microservice:
+    image: report-microservice
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: report-microservice-container
+    restart: always
+    ports:
+      - "19212:19212"
+    env_file:
+      - .env
